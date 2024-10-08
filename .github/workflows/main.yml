@@ -3,24 +3,23 @@ name: Gestion de Turnos en Slack
 # Sección "on" para programar los horarios de ejecución de acuerdo a los cambios de turno
 on:
   schedule:
-    # Turnos de lunes a jueves
-    - cron: '15 15 * * 1-4'   # 09:00 AM Ciudad de México (Turno de Zaira)
-    - cron: '17 16 * * 1-4'   # 10:17 AM Ciudad de México (Turno de Nancy)
-    - cron: '34 17 * * 1-4'   # 11:34 AM Ciudad de México (Turno de Andres)
-    - cron: '51 18 * * 1-4'   # 12:51 PM Ciudad de México (Turno de Julio)
-    - cron: '08 20 * * 1-4'   # 02:08 PM Ciudad de México (Turno de Andrea)
-    - cron: '25 21 * * 1-4'   # 03:25 PM Ciudad de México (Turno de Lucy)
-    - cron: '42 22 * * 1-4'   # 04:42 PM Ciudad de México (Turno de Armando)
+    # Turnos de lunes a jueves (ajustados a UTC)
+    - cron: '0 15 * * 1-4'   # 09:00 AM Ciudad de México (Turno de Zaira)
+    - cron: '17 16 * * 1-4'  # 10:17 AM Ciudad de México (Turno de Nancy)
+    - cron: '34 17 * * 1-4'  # 11:34 AM Ciudad de México (Turno de Andres)
+    - cron: '51 18 * * 1-4'  # 12:51 PM Ciudad de México (Turno de Julio)
+    - cron: '20 20 * * 1-4'  # 02:08 PM Ciudad de México (Turno de Andrea)
+    - cron: '25 21 * * 1-4'  # 03:25 PM Ciudad de México (Turno de Lucy)
+    - cron: '42 22 * * 1-4'  # 04:42 PM Ciudad de México (Turno de Armando)
 
     # Turnos del viernes (ajustados a UTC)
-    - cron: '15 15 * * 5'     # 09:00 AM Ciudad de México (Turno de Zaira)
-    - cron: '17 16 * * 5'     # 10:17 AM Ciudad de México (Turno de Nancy)
-    - cron: '34 17 * * 5'     # 11:34 AM Ciudad de México (Turno de Julio)
-    - cron: '51 18 * * 5'     # 12:51 PM Ciudad de México (Turno de Lucy)
-    - cron: '08 20 * * 5'     # 02:08 PM Ciudad de México (Turno de Andrea)
-    - cron: '25 21 * * 5'     # 03:25 PM Ciudad de México (Turno de Andres)
-    - cron: '42 22 * * 5'     # 04:42 PM Ciudad de México (Turno de Armando)
-
+    - cron: '0 15 * * 5'     # 09:00 AM Ciudad de México (Turno de Zaira)
+    - cron: '17 16 * * 5'    # 10:17 AM Ciudad de México (Turno de Nancy)
+    - cron: '34 17 * * 5'    # 11:34 AM Ciudad de México (Turno de Julio)
+    - cron: '51 18 * * 5'    # 12:51 PM Ciudad de México (Turno de Lucy)
+    - cron: '08 20 * * 5'    # 02:08 PM Ciudad de México (Turno de Andrea)
+    - cron: '25 21 * * 5'    # 03:25 PM Ciudad de México (Turno de Andres)
+    - cron: '42 22 * * 5'    # 04:42 PM Ciudad de México (Turno de Armando)
 jobs:
   slack-turnos:
     runs-on: ubuntu-latest  # O el entorno que prefieras usar
