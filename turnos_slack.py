@@ -5,7 +5,8 @@ import pytz
 
 # Obtiene el token de Slack desde los secretos de GitHub
 SLACK_TOKEN = os.getenv('SLACK_TOKEN')
-USERGROUP_ID = 'S063TADEC77'
+USERGROUP_ID = 'S063TADEC77'  # ID del grupo de usuarios
+CANAL_NOTIFICACION_ID = 'C05NQ68UVJR'  # ID del canal de notificación
 
 # Lista de usuarios con sus IDs de Slack y horarios de lunes a jueves
 USUARIOS_LUN_JUE = [
@@ -43,6 +44,24 @@ def actualizar_miembros_grupo(miembros):
         print(f"Grupo de usuarios actualizado con éxito.")
     return result
 
+# Función para enviar notificación al canal
+def enviar_notificacion(nombre, user_id):
+    url = "https://slack.com/api/chat.postMessage"
+    headers = {"Authorization": f"Bearer {SLACK_TOKEN}", "Content-Type": "application/json"}
+    mensaje = f"Es tu hora de cubrir el chat de atencion a cliente <@{user_id}> recuerda dar lo mejor de ti"
+    data = {
+        "channel": CANAL_NOTIFICACION_ID,
+        "text": mensaje
+    }
+    response = requests.post(url, headers=headers, json=data)
+    result = response.json()
+
+    if not result.get("ok"):
+        print(f"Error al enviar notificación al canal: {result.get('error')}")
+    else:
+        print(f"Notificación enviada al canal para {nombre}.")
+    return result
+
 # Obtener la hora actual en la zona horaria de Ciudad de México
 def hora_actual():
     tz = pytz.timezone('America/Mexico_City')
@@ -68,11 +87,13 @@ def ejecutar_turnos():
         return
     
     # Filtrar los usuarios que deben estar en el grupo según la hora
-    usuarios_en_turno = [usuario['id'] for usuario in usuarios if usuario['inicio'] <= hora < usuario['fin']]
+    usuarios_en_turno = [usuario for usuario in usuarios if usuario['inicio'] <= hora < usuario['fin']]
 
     if usuarios_en_turno:
-        print(f"Usuarios en turno: {usuarios_en_turno}, actualizando grupo.")
-        actualizar_miembros_grupo(usuarios_en_turno)
+        for usuario in usuarios_en_turno:
+            print(f"Es el turno de {usuario['nombre']}, actualizando grupo y enviando notificación.")
+            actualizar_miembros_grupo([usuario['id']])
+            enviar_notificacion(usuario['nombre'], usuario['id'])
     else:
         print(f"No hay usuarios en turno en este momento.")
 
