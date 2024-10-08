@@ -9,7 +9,7 @@ on:
     - cron: '34 17 * * 1-4'  # 11:34 AM Ciudad de México (Turno de Andres)
     - cron: '51 18 * * 1-4'  # 12:51 PM Ciudad de México (Turno de Julio)
     - cron: '08 20 * * 1-4'  # 02:08 PM Ciudad de México (Turno de Andrea)
-    - cron: '25 21 * * 1-4'  # 03:25 PM Ciudad de México (Turno de Lucy)
+    - cron: '40 21 * * 1-4'  # 03:25 PM Ciudad de México (Turno de Lucy)
     - cron: '42 22 * * 1-4'  # 04:42 PM Ciudad de México (Turno de Armando)
 
     # Turnos del viernes (ajustados a UTC)
