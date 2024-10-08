@@ -1,6 +1,9 @@
 name: Turnos en Slack
 
 on:
+  push:
+    branches:
+      - main
   schedule:
     - cron: '0 * * * *'  # Esto ejecuta el script cada hora
 
@@ -24,5 +27,5 @@ jobs:
 
     - name: Run Python script
       env:
-        SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}  # Asegúrate de agregar este secreto en GitHub
+        SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
       run: python turnos_slack.py
