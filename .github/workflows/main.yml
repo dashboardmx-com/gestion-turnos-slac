@@ -9,7 +9,7 @@ on:
     - cron: '06 16 * * 1-4'  # 10:17 AM Ciudad de México (Turno de Nancy)
     - cron: '23 17 * * 1-4'  # 11:34 AM Ciudad de México (Turno de Andres)
     - cron: '40 18 * * 1-4'  # 12:51 PM Ciudad de México (Turno de Julio)
-    - cron: '50 19 * * 1-4'  # 02:08 PM Ciudad de México (Turno de Andrea)
+    - cron: '00 20 * * 1-4'  # 02:08 PM Ciudad de México (Turno de Andrea)
     - cron: '14 21 * * 1-4'  # 03:25 PM Ciudad de México (Turno de Lucy)
     - cron: '31 22 * * 1-4'  # 04:42 PM Ciudad de México (Turno de Armando)
 
